@@ -1,0 +1,24 @@
+{
+  "name": "bc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "serve",
+    "compileDeploy": "tsc && npm run deploy",
+    "deploy": "copyfiles -f src/browser/*.html src/browser/*.css dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SergeiBesedin/blockchain.git"
+  },
+  "author": "Sergei Besedin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SergeiBesedin/blockchain/issues"
+  },
+  "homepage": "https://github.com/SergeiBesedin/blockchain#readme",
+  "devDependencies": {
+    "typescript": "^4.8.2"
+  }
+}
