@@ -1,4 +1,4 @@
-// import { sha256 } from './universal-sha256';
+import { sha256 } from './universal-sha256';
 import { Transaction, IBlock } from '../typing/typing';
 
 //блокчейн с доказательством проделанной работы
@@ -18,24 +18,23 @@ export class Block implements IBlock {
     } while (this.hash.startsWith('0000') === false);
   }
 
-  private async calculateHash(nonce: number | string = ''): Promise<string> {
+  private async calculateHash(nonce: number): Promise<string> {
     const data =
       this.previousBlockHash +
       this.timestamp +
       JSON.stringify(this.transactions) +
       nonce;
-    // return sha256(data);
-    return '';
+    return sha256(data);
   }
 }
 
 export class Blockchain {
-  private readonly _chain: Block[];
+  private readonly _chain: Block[] = [];
   private _pendingTransactions: Transaction[] = [];
 
   private get latestBlock(): Block {
     //получаем последний блок
-    return this.chain[this.chain.length - 1];
+    return this._chain[this._chain.length - 1];
   }
 
   get chain(): Block[] {
