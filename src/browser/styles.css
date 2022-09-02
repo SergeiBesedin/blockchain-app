@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
 body {
   display: flex;
   min-width: 300px;
   min-height: 100%;
   flex-direction: column;
-  background: rgba(247, 247, 252, 1);
+  background-color: #f7f7fc;
+  font-family: 'Poppins', sans-serif;
 }
 
 .wrapper {
@@ -20,20 +23,8 @@ body {
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 120px;
+  padding: 0 32px;
   box-sizing: border-box;
-}
-
-@media (max-width: 1000px) {
-  .blockchain__container {
-    padding: 0 48px;
-  }
-}
-
-@media (max-width: 480px) {
-  .blockchain__container {
-    padding: 0 24px;
-  }
 }
 
 .blockchain__header {
@@ -43,16 +34,9 @@ body {
 }
 
 .header__title {
-  font-size: 64px;
-  line-height: 80px;
+  font-size: 44px;
+  line-height: 60px;
   letter-spacing: 1px;
-}
-
-@media (max-width: 480px) {
-  .header__title {
-    font-size: 40px;
-    line-height: 50px;
-  }
 }
 
 .blockchain__body {
@@ -65,10 +49,13 @@ body {
 }
 
 .transactions__fields {
+  display: flex;
+  flex-wrap: wrap;
   margin-bottom: 32px;
 }
 
 .blockchain-block {
+  background: #fcfcfc;
   border-radius: 16px;
   box-shadow: 0px 20px 24px rgba(17, 17, 17, 0.06);
 }
@@ -78,13 +65,7 @@ body {
 }
 
 .blockchain-block__container {
-  padding: 44px 52px;
-}
-
-@media (max-width: 480px) {
-  .blockchain-block__container {
-    padding: 32px 24px;
-  }
+  padding: 32px;
 }
 
 .blockchain-block__title {
@@ -92,6 +73,8 @@ body {
   line-height: 34px;
   font-weight: 700;
   letter-spacing: 1px;
+  margin: 0;
+  margin-bottom: 44px;
 }
 
 .blockchain-block__controls {
@@ -102,16 +85,23 @@ body {
 .sender-input {
 }
 
-.input {
+.recipient-input {
 }
 
 .arrow-right {
 }
 
-.recipient-input {
+.transactions__transfer-btn {
 }
 
-.transactions__transfer-btn {
+.input {
+  padding: 18px 24px;
+  border-width: 0;
+  border-radius: 16px;
+  background-color: #eff0f7;
+  font-size: 16px;
+  line-height: 28px;
+  box-sizing: border-box;
 }
 
 .btn {
@@ -125,12 +115,7 @@ body {
   font-size: 18px;
   line-height: 22px;
   border-width: 0;
-}
-
-@media (max-width: 480px) {
-  .btn {
-    flex: 1;
-  }
+  cursor: pointer;
 }
 
 .blockchain__pending {
@@ -140,6 +125,7 @@ body {
 }
 
 .pending__list {
+  margin-bottom: 32px;
 }
 
 .pending__confirm-btn {
@@ -152,4 +138,42 @@ body {
 }
 
 .state__wrapper {
+}
+
+@media (max-width: 1024px) {
+  .blockchain__container {
+    padding: 0 24px;
+  }
+
+  .blockchain-block__container {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .blockchain__container {
+    padding: 0 16px;
+  }
+
+  .blockchain-block__container {
+    padding: 16px;
+  }
+
+  .blockchain-block__title {
+    font-size: 24px;
+    line-height: 32px;
+    margin-bottom: 24px;
+  }
+
+  .header__title {
+    font-size: 40px;
+    line-height: 50px;
+  }
+
+  .btn {
+    flex: 1;
+    padding: 14px 32px;
+    font-size: 16px;
+    line-height: 20px;
+  }
 }
