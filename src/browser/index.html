@@ -3,7 +3,7 @@
 
 <head>
    <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
    <title>Blockchain App</title>
    <link rel="stylesheet" href="../../dist/normalize.css" |>
    <link rel="stylesheet" href="../../dist/styles.css" />
@@ -11,49 +11,59 @@
 </head>
 
 <body>
-   <div class="blockchain">
-      <div class="blockchain__container">
-         <header class="blockchain__header header">
-            <h1 class="header__title">Blockchain</h1>
-         </header>
+   <div class="wrapper">
+      <div class="blockchain">
+         <div class="blockchain__container">
+            <header class="blockchain__header header">
+               <h1 class="header__title">Blockchain</h1>
+            </header>
 
-         <main class="blockchain__body">
+            <main class="blockchain__body">
 
-            <section class="blockchain__transactions transactions blockchain-block">
-               <div class="blockchain-block__container">
-                  <h2 class="blockchain-block__title">Add Transaction</h2>
-                  <form>
-                     <input id="sender" type="text" autocomplete="off" disabled placeholder="Sender"
-                        class="sender-input input" />
-                     <span class="arrow-right"></span>
-                     <input id="recipient" type="text" autocomplete="off" disabled placeholder="Recipient"
-                        class="recipient-input input" />
-                     <button id="transfer" class="transactions__transfer-btn btn" type="button">Transfer money</button>
-                  </form>
-               </div>
-            </section>
+               <section class="blockchain__transactions transactions blockchain-block">
+                  <div class="blockchain-block__container">
+                     <h2 class="blockchain-block__title">Add Transaction</h2>
+                     <div class="transactions__fields">
+                        <input id="sender" type="text" autocomplete="off" disabled placeholder="Sender"
+                           class="sender-input input" />
+                        <span class="arrow-right"></span>
+                        <input id="recipient" type="text" autocomplete="off" disabled placeholder="Recipient"
+                           class="recipient-input input" />
+                        <input id="number" type="number" autocomplete="off" disabled placeholder="Amount"
+                           class="amount-input input" />
+                     </div>
+                     <div class="blockchain-block__controls">
+                        <button id="transfer" class="transactions__transfer-btn btn" type="button">Transfer
+                           money</button>
+                     </div>
 
-            <section class="blockchain__pending pending blockchain-block">
-               <div class="blockchain-block__container">
-                  <h2 class="blockchain-block__title">Pending transactions</h2>
-                  <div>
-                     <ul id="pendign-list" class="pending__list"></ul>
-                     <button id="confirm" class="pending__confirm-btn btn" type="button">Confirm transactions</button>
                   </div>
-               </div>
-            </section>
+               </section>
 
-            <section class="blockchain__state state blockchain-block">
-               <div class="blockchain-block__container">
-                  <h2 class="blockchain-block__title">Blockchain state</h2>
-                  <div id="blocks" class="state__wrapper"></div>
-               </div>
-            </section>
+               <section class="blockchain__pending pending blockchain-block">
+                  <div class="blockchain-block__container">
+                     <h2 class="blockchain-block__title">Pending transactions</h2>
+                     <div>
+                        <ul id="pendign-list" class="pending__list"></ul>
+                        <div class="blockchain-block__controls">
+                           <button id="confirm" class="pending__confirm-btn btn" type="button">Confirm
+                              transactions</button>
+                        </div>
+                     </div>
+                  </div>
+               </section>
 
-         </main>
+               <section class="blockchain__state state blockchain-block">
+                  <div class="blockchain-block__container">
+                     <h2 class="blockchain-block__title">Blockchain state</h2>
+                     <div id="blocks" class="state__wrapper"></div>
+                  </div>
+               </section>
+
+            </main>
+         </div>
       </div>
    </div>
-
 </body>
 
 </html>
