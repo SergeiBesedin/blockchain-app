@@ -1,5 +1,5 @@
 import { sha256 } from './universal-sha256';
-import { Transaction, IBlock } from '../typing/typing';
+import { Transaction, IBlock } from '../typings/typings';
 
 //блокчейн с доказательством проделанной работы
 export class Block implements IBlock {
