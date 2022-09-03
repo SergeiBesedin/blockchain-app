@@ -1,4 +1,4 @@
-import { Block, Blockchain } from '../lib/bc-transactions';
+import { Block, Blockchain } from '../lib/bc-transactions.js';
 
 const enum Status {
   Initialization = '⏳ Initializing the blockchain, creating the genesis block ...',
@@ -29,19 +29,21 @@ class Main {
       'recipient'
     ) as HTMLInputElement;
     this.amountInp = document.getElementById('amount') as HTMLInputElement;
-
     this.confirmBtn.onclick = this._mineBlock.bind(this);
     this.transferBtn.onclick = this._addNewTransaction.bind(this);
   }
 
   private _clearForm(): void {
-    this.senderInp.textContent = '';
-    this.recipientInp.textContent = '';
-    this.amountInp.textContent = '';
+    this.senderInp.innerHTML = '';
+    this.recipientInp.innerHTML = '';
+    this.amountInp.innerHTML = '';
   }
 
   async addGenesisBlock() {
     await this.blockchain.createGenesisBlock();
+    this.blocksEl.innerHTML = this.blockchain.chain
+      .map((block, ind) => this._createBlockHtml(block, ind))
+      .join('');
   }
 
   private _addNewTransaction(): void {
@@ -51,7 +53,6 @@ class Main {
       amount: Number(this.amountInp.value),
     };
     this.blockchain.createTransaction(payload);
-
     this._clearForm();
   }
 
@@ -65,31 +66,37 @@ class Main {
 
   private _createBlockHtml(block: Block, index: number): string {
     const { timestamp, previousBlockHash, hash, transactions } = block;
-    return `<div class="block">
-   <div class="block__header">
-      <span class="block__index">#${index}</span>
-      <span class="block__timestamp">${timestamp}</span>
+    return `
+   <div class="block">
+    <div class="block__container">
+       <div class="block__header">
+          <span class="block__index">#${index}</span>
+          <span class="block__timestamp">${new Date(
+            timestamp
+          ).toLocaleTimeString()}</span>
+       </div>
+       <div class="block__hash">
+       <div class="block__prev-hash">
+          <div class="hash-title">Prev hash</div>
+          <div class="hash-value">${previousBlockHash}</div>
+       </div>
+       <div class="block__this-hash">
+          <div class="hash-title">This hash</div>
+          <div class="hash-value">${hash}</div>
+       </div>
+       </div>
+       <div class="block__transactions">
+         <div class="hash-title">Transactions</div>
+         <ul class="block__transactions-list">
+         ${transactions.map(
+           (t) =>
+             `<li class="transaction-item">${t.sender} → ${t.recipient} — ${t.amount}</li>`
+         )}
+         </ul>
+       </div>
+    </div>
    </div>
-   <div class="block__hash">
-      <div class="block__prev-hash">
-         <div class="hash-title">Prev hash</div>
-         <div class="hash-value">${previousBlockHash}</div>
-      </div>
-      <div class="block__this-hash">
-         <div class="hash-title">This hash</div>
-         <div class="hash-value">${hash}</div>
-      </div>
-   </div>
-   <div class="block__transactions">
-      <div class="hash-title">Transactions</div>
-      <ul class="block__transactions-list">
-      ${transactions.map(
-        (t) =>
-          `<li class="transaction-item">${t.sender} → ${t.recipient} — ${t.amount}</li>`
-      )}
-      </ul>
-   </div>
-</div>`;
+   `;
   }
 }
 

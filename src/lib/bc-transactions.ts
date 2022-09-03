@@ -1,4 +1,4 @@
-import { sha256 } from './universal-sha256';
+import { sha256 } from './universal-sha256.js';
 import { Transaction, IBlock } from '../typings/typings';
 
 //блокчейн с доказательством проделанной работы

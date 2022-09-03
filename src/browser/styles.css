@@ -72,6 +72,8 @@ body {
 }
 
 .blockchain-block__container {
+  display: flex;
+  flex-direction: column;
   padding: 32px;
 }
 
@@ -158,34 +160,56 @@ body {
 }
 
 .state__wrapper {
+  display: flex;
 }
 
 /* Стили для блоков */
 .block {
+  width: 50%;
+  background-color: #eff0f7;
+  color: #6e7191;
+  border-radius: 16px;
+}
+
+.block__container {
+  padding: 24px;
 }
 
 .block__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
 }
 
 .block__index {
+  font-size: 32px;
+  line-height: 34px;
+  color: #000000;
 }
 
 .block__timestamp {
 }
 
 .block__hash {
+  display: flex;
+  margin-bottom: 24px;
 }
 
 .block__prev-hash {
+  width: 50%;
 }
 
 .hash-title {
+  margin-bottom: 4px;
 }
 
 .hash-value {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .block__this-hash {
+  width: 50%;
 }
 
 .block__transactions {
