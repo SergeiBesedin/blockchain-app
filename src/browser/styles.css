@@ -128,7 +128,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #5f2eea;
+  border: none;
   border-radius: 40px;
   background-color: #5f2eea;
   color: #ffffff;
@@ -160,6 +160,44 @@ body {
 .state__wrapper {
 }
 
+/* Стили для блоков */
+.block {
+}
+
+.block__header {
+}
+
+.block__index {
+}
+
+.block__timestamp {
+}
+
+.block__hash {
+}
+
+.block__prev-hash {
+}
+
+.hash-title {
+}
+
+.hash-value {
+}
+
+.block__this-hash {
+}
+
+.block__transactions {
+}
+
+.block__transactions-list {
+}
+
+.transaction-item {
+}
+
+/* Адаптив */
 @media (max-width: 1024px) {
   .blockchain__container {
     padding: 0 24px;
@@ -213,10 +251,14 @@ body {
   }
 }
 
+/* Состояния для кнопок */
 @media (hover: hover) and (pointer: fine) {
   /* только для устройств с мышью */
   .btn:hover {
-    background-color: #ffffff;
-    color: #5f2eea;
+    background-color: #2a00a2;
   }
+}
+
+.btn:active {
+  background: #160056;
 }
