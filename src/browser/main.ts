@@ -10,6 +10,7 @@ const enum Status {
 class Main {
   statusEl: HTMLElement;
   blocksEl: HTMLElement;
+  notificationEl: HTMLElement;
   pendingListEl: HTMLElement;
   confirmBtn: HTMLButtonElement;
   transferBtn: HTMLButtonElement;
@@ -22,6 +23,7 @@ class Main {
     this.blockchain = new Blockchain();
     this.statusEl = document.getElementById('status');
     this.blocksEl = document.getElementById('blocks');
+    this.notificationEl = document.getElementById('notification');
     this.pendingListEl = document.getElementById('pending-list');
     this.confirmBtn = document.getElementById('confirm') as HTMLButtonElement;
     this.transferBtn = document.getElementById('transfer') as HTMLButtonElement;
@@ -42,11 +44,12 @@ class Main {
 
   async addGenesisBlock() {
     this.statusEl.textContent = Status.Initialization;
+    this.pendingListEl.classList.add('hide');
     await this.blockchain.createGenesisBlock();
     this.blocksEl.innerHTML = this.blockchain.chain
       .map((block, ind) => this._createBlockHtml(block, ind))
       .join('');
-    // this.statusEl.textContent = Status.AddTransaction;
+    this.statusEl.textContent = Status.AddTransaction;
     this._toggleState(true, false);
   }
 
@@ -58,12 +61,26 @@ class Main {
     };
     this._toggleState(false, false);
     this.blockchain.createTransaction(transaction);
-    const pendingItem = document.createElement('li');
-    pendingItem.classList.add('pending-item');
-    pendingItem.textContent = `${transaction.sender} — ${transaction.recipient}: $${transaction.amount}`;
-    this.pendingListEl.appendChild(pendingItem);
+    this._createPendingTransaction(
+      transaction.sender,
+      transaction.recipient,
+      transaction.amount
+    );
+    this.notificationEl.classList.add('hide');
+    this.pendingListEl.classList.remove('hide');
     this.statusEl.textContent = Status.ReadyToMine;
     this._clearForm();
+  }
+
+  private _createPendingTransaction(
+    sender: string,
+    recipient: string,
+    amount: number
+  ) {
+    const pendingItem = document.createElement('li');
+    pendingItem.classList.add('pending-item');
+    pendingItem.textContent = `${sender} — ${recipient}: $${amount}`;
+    this.pendingListEl.appendChild(pendingItem);
   }
 
   private async _mineBlock() {
@@ -75,6 +92,9 @@ class Main {
       .join('');
     this._toggleState(true, false);
     this.pendingListEl.innerHTML = '';
+    this.statusEl.textContent = Status.AddTransaction;
+    this.pendingListEl.classList.add('hide');
+    this.notificationEl.classList.remove('hide');
   }
 
   private _toggleState(confirm: boolean, transferForm: boolean): void {
@@ -112,7 +132,7 @@ class Main {
          <ul class="block__transactions-list">
          ${transactions.map(
            (t) =>
-             `<li class="transaction-item">${t.sender} → ${t.recipient} — ${t.amount}</li>`
+             `<li class="transaction-item">${t.sender} — ${t.recipient} — $${t.amount}</li>`
          )}
          </ul>
        </div>

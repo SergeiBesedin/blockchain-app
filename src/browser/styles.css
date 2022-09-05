@@ -46,7 +46,7 @@ body {
   background-color: #e4daff;
   color: #4e4b66;
   font-size: 24px;
-  line-height: 38px;
+  line-height: 36px;
 }
 
 .blockchain__body {
@@ -89,11 +89,11 @@ body {
 
 .blockchain-block__title {
   font-size: 32px;
-  line-height: 34px;
+  line-height: 36px;
   font-weight: 700;
   letter-spacing: 1px;
   margin: 0;
-  margin-bottom: 44px;
+  margin-bottom: 36px;
 }
 
 .blockchain-block__controls {
@@ -126,12 +126,12 @@ body {
 
 .input {
   width: 100%;
-  padding: 18px 24px;
+  padding: 16px 24px;
   border: none;
   border-radius: 16px;
   background-color: #eff0f7;
   font-size: 16px;
-  line-height: 28px;
+  line-height: 24px;
   box-sizing: border-box;
 }
 
@@ -144,7 +144,7 @@ body {
   border-radius: 40px;
   background-color: #5f2eea;
   color: #ffffff;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 22px;
   cursor: pointer;
   transition-duration: 0.3s;
@@ -156,8 +156,35 @@ body {
 .pending {
 }
 
-.pending__list {
+.pending__notification {
+  color: #a0a3bd;
+  margin: 0;
   margin-bottom: 32px;
+  padding: 16px 24px;
+  background-color: #eff0f7;
+  border-radius: 16px;
+  font-size: 16px;
+  line-height: 28px;
+}
+
+.pending__list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  margin-bottom: 32px;
+}
+
+.pending-item {
+  font-size: 16px;
+  line-height: 24px;
+  padding: 16px 24px;
+  background-color: #eff0f7;
+  border-radius: 16px;
+  margin-bottom: 12px;
+}
+
+.pending-item:not(:last-child) {
+  margin-bottom: 0;
 }
 
 .pending__confirm-btn {
@@ -171,14 +198,19 @@ body {
 
 .state__wrapper {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 /* Стили для блоков */
 .block {
-  width: 50%;
+  width: 48%;
   background-color: #eff0f7;
   color: #6e7191;
   border-radius: 16px;
+  padding: 0 8px;
+  box-sizing: border-box;
+  margin-bottom: 16px;
 }
 
 .block__container {
@@ -188,6 +220,7 @@ body {
 .block__header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 24px;
 }
 
@@ -227,6 +260,9 @@ body {
 }
 
 .block__transactions-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .transaction-item {
@@ -252,6 +288,16 @@ body {
 }
 
 @media (max-width: 480px) {
+  .blockchain__header {
+    margin-bottom: 32px;
+  }
+
+  .header__status {
+    font-size: 16px;
+    line-height: 24px;
+    padding: 16px;
+  }
+
   .blockchain__container {
     padding: 0 16px;
   }
@@ -277,6 +323,10 @@ body {
     font-size: 16px;
     line-height: 20px;
   }
+
+  .block {
+    width: 100%;
+  }
 }
 
 @media (max-width: 360px) {
@@ -296,4 +346,14 @@ body {
 
 .btn:active {
   background: #160056;
+}
+
+/* Состояния для инпутов */
+.input:focus {
+  background-color: #ffffff;
+  outline: 2px solid #5f2eea;
+}
+
+.hide {
+  display: none;
 }
