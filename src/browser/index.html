@@ -16,6 +16,7 @@
          <div class="blockchain__container">
             <header class="blockchain__header header">
                <h1 class="header__title">Blockchain</h1>
+               <p id="status" class="header__status"></p>
             </header>
 
             <main class="blockchain__body">
@@ -35,7 +36,7 @@
                            class="amount-input input" />
                      </div>
                      <div class="blockchain-block__controls">
-                        <button id="transfer" class="transactions__transfer-btn btn" type="button">Transfer
+                        <button id="transfer" class="transactions__transfer-btn btn" type="button" disabled>Transfer
                            money</button>
                      </div>
 
@@ -45,9 +46,9 @@
                <section class="blockchain__pending pending blockchain-block">
                   <div class="blockchain-block__container">
                      <h2 class="blockchain-block__title">Pending transactions</h2>
-                     <ul id="pendign-list" class="pending__list"></ul>
+                     <ul id="pending-list" class="pending__list"></ul>
                      <div class="blockchain-block__controls">
-                        <button id="confirm" class="pending__confirm-btn btn" type="button">Confirm
+                        <button id="confirm" class="pending__confirm-btn btn" type="button" disabled>Confirm
                            transactions</button>
                      </div>
                   </div>
