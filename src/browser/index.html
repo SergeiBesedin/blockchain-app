@@ -22,25 +22,24 @@
             <main class="blockchain__body">
 
                <section class="blockchain__transactions transactions blockchain-block">
-                  <div class="blockchain-block__container">
+                  <form id="transaction-form" class="blockchain-block__container">
                      <h2 class="blockchain-block__title">Add Transaction</h2>
                      <div class="transactions__fields">
                         <div class="transactions__fields-wrapper">
-                           <input id="sender" type="text" autocomplete="off" disabled placeholder="Sender"
-                              class="sender-input input" />
+                           <input id="sender" type="text" autocomplete="off" disabled required
+                              pattern="[A-Za-zА-Яа-яЁё]{2,}" placeholder="Sender" class="sender-input input" />
                            <span class="arrow-right"></span>
-                           <input id="recipient" type="text" autocomplete="off" disabled placeholder="Recipient"
-                              class="recipient-input input" />
+                           <input id="recipient" type="text" autocomplete="off" disabled required
+                              pattern="[A-Za-zА-Яа-яЁё]{2,}" placeholder="Recipient" class="recipient-input input" />
                         </div>
-                        <input id="number" type="number" autocomplete="off" disabled placeholder="Amount"
+                        <input id="number" type="number" autocomplete="off" disabled required placeholder="Amount"
                            class="amount-input input" />
                      </div>
                      <div class="blockchain-block__controls">
-                        <button id="transfer" class="transactions__transfer-btn btn" type="button" disabled>Transfer
+                        <button id="transfer" class="transactions__transfer-btn btn" type="submit" disabled>Transfer
                            money</button>
                      </div>
-
-                  </div>
+                  </form>
                </section>
 
                <section class="blockchain__pending pending blockchain-block">

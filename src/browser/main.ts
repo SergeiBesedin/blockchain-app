@@ -14,6 +14,7 @@ class Main {
   pendingListEl: HTMLElement;
   confirmBtn: HTMLButtonElement;
   transferBtn: HTMLButtonElement;
+  transactionForm: HTMLFormElement;
   senderInp: HTMLInputElement;
   recipientInp: HTMLInputElement;
   amountInp: HTMLInputElement;
@@ -27,16 +28,19 @@ class Main {
     this.pendingListEl = document.getElementById('pending-list');
     this.confirmBtn = document.getElementById('confirm') as HTMLButtonElement;
     this.transferBtn = document.getElementById('transfer') as HTMLButtonElement;
+    this.transactionForm = document.getElementById(
+      'transaction-form'
+    ) as HTMLFormElement;
     this.senderInp = document.getElementById('sender') as HTMLInputElement;
     this.recipientInp = document.getElementById(
       'recipient'
     ) as HTMLInputElement;
     this.amountInp = document.getElementById('number') as HTMLInputElement;
     this.confirmBtn.onclick = this._mineBlock.bind(this);
-    this.transferBtn.onclick = this._addNewTransaction.bind(this);
+    this.transactionForm.onsubmit = this._addNewTransaction.bind(this);
   }
 
-  private _clearForm(): void {
+  private _clearFields(): void {
     this.senderInp.value = '';
     this.recipientInp.value = '';
     this.amountInp.value = '';
@@ -53,11 +57,12 @@ class Main {
     this._toggleState(true, false);
   }
 
-  private _addNewTransaction(): void {
+  private _addNewTransaction(e: SubmitEvent): void {
+    e.preventDefault();
     const transaction = {
-      sender: this.senderInp.value,
-      recipient: this.recipientInp.value,
-      amount: Number(this.amountInp.value),
+      sender: this.senderInp.value.trim(),
+      recipient: this.recipientInp.value.trim(),
+      amount: Number(this.amountInp.value.trim()),
     };
     this._toggleState(false, false);
     this.blockchain.createTransaction(transaction);
@@ -69,7 +74,7 @@ class Main {
     this.notificationEl.classList.add('hide');
     this.pendingListEl.classList.remove('hide');
     this.statusEl.textContent = Status.ReadyToMine;
-    this._clearForm();
+    this._clearFields();
   }
 
   private _createPendingTransaction(

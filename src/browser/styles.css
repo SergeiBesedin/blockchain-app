@@ -180,11 +180,10 @@ body {
   padding: 16px 24px;
   background-color: #eff0f7;
   border-radius: 16px;
-  margin-bottom: 12px;
 }
 
 .pending-item:not(:last-child) {
-  margin-bottom: 0;
+  margin-bottom: 12px;
 }
 
 .pending__confirm-btn {
@@ -208,7 +207,6 @@ body {
   background-color: #eff0f7;
   color: #6e7191;
   border-radius: 16px;
-  padding: 0 8px;
   box-sizing: border-box;
   margin-bottom: 16px;
 }
@@ -348,11 +346,19 @@ body {
   background: #160056;
 }
 
+.btn:disabled {
+  background: #a0a3bd;
+}
+
 /* Состояния для инпутов */
 .input:focus {
   background-color: #ffffff;
   outline: 2px solid #5f2eea;
 }
+
+/* .input:invalid {
+  border: 2px solid #ed2e7e;
+} */
 
 .hide {
   display: none;
