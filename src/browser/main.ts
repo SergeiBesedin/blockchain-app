@@ -1,4 +1,5 @@
 import { Block, Blockchain } from '../lib/bc-transactions.js';
+import { Transaction } from '../typings/typings.js';
 
 const enum Status {
   Initialization = '⏳ Initializing the blockchain, creating the genesis block ...',
@@ -66,21 +67,14 @@ class Main {
     };
     this._blockButtons(false, false);
     this.blockchain.createTransaction(transaction);
-    this._createPendingTransaction(
-      transaction.sender,
-      transaction.recipient,
-      transaction.amount
-    );
+    this._createPendingTransaction(transaction);
     this._showPendingList(false);
     this.statusEl.textContent = Status.ReadyToMine;
     this._clearFields();
   }
 
-  private _createPendingTransaction(
-    sender: string,
-    recipient: string,
-    amount: number
-  ): void {
+  private _createPendingTransaction(t: Transaction): void {
+    const { sender, recipient, amount } = t;
     const pendingItem = document.createElement('li');
     pendingItem.classList.add('pending-item');
     pendingItem.textContent = `${sender} — ${recipient}: $${amount}`;

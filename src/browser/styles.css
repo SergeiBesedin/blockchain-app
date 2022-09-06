@@ -31,13 +31,11 @@ body {
   margin-bottom: 40px;
 }
 
-.header {
-}
-
 .header__title {
   font-size: 44px;
   line-height: 60px;
   letter-spacing: 1px;
+  font-weight: 400;
 }
 
 .header__status {
@@ -68,7 +66,7 @@ body {
   display: flex;
   align-items: center;
   margin-right: 24px;
-  flex: 2;
+  width: 70%;
 }
 
 .blockchain-block {
@@ -101,12 +99,6 @@ body {
   justify-content: end;
 }
 
-.sender-input {
-}
-
-.recipient-input {
-}
-
 .amount-input {
   flex: 1;
 }
@@ -119,9 +111,6 @@ body {
   background-image: url('arrow-right.svg');
   background-repeat: no-repeat;
   background-position: center;
-}
-
-.transactions__transfer-btn {
 }
 
 .input {
@@ -167,6 +156,10 @@ body {
   line-height: 28px;
 }
 
+.hide {
+  display: none;
+}
+
 .pending__list {
   padding: 0;
   margin: 0;
@@ -184,15 +177,6 @@ body {
 
 .pending-item:not(:last-child) {
   margin-bottom: 12px;
-}
-
-.pending__confirm-btn {
-}
-
-.blockchain__state {
-}
-
-.state {
 }
 
 .state__wrapper {
@@ -263,9 +247,6 @@ body {
   padding: 0;
 }
 
-.transaction-item {
-}
-
 /* Адаптив */
 @media (max-width: 1024px) {
   .blockchain__container {
@@ -279,7 +260,7 @@ body {
 
 @media (max-width: 780px) {
   .transactions__fields-wrapper {
-    flex: 100%;
+    width: 100%;
     margin-right: 0;
     margin-bottom: 24px;
   }
@@ -353,13 +334,10 @@ body {
 /* Состояния для инпутов */
 .input:focus {
   background-color: #ffffff;
-  outline: 2px solid #5f2eea;
+  outline: 2px solid #696eff;
 }
 
-/* .input:invalid {
+/* .input:invalid:focus {
+  background-color: #fff3f8;
   border: 2px solid #ed2e7e;
 } */
-
-.hide {
-  display: none;
-}
