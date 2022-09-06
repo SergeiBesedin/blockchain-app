@@ -27,13 +27,13 @@
                      <div class="transactions__fields">
                         <div class="transactions__fields-wrapper">
                            <input id="sender" type="text" autocomplete="off" disabled required
-                              pattern="[A-Za-zА-Яа-яЁё]{2,}" placeholder="Sender" class="sender-input input" />
+                              pattern="[A-Za-zА-Яа-яЁё]{2,15}" placeholder="Sender" class="sender-input input" />
                            <span class="arrow-right"></span>
                            <input id="recipient" type="text" autocomplete="off" disabled required
-                              pattern="[A-Za-zА-Яа-яЁё]{2,}" placeholder="Recipient" class="recipient-input input" />
+                              pattern="[A-Za-zА-Яа-яЁё]{2,15}" placeholder="Recipient" class="recipient-input input" />
                         </div>
-                        <input id="number" type="number" autocomplete="off" disabled required placeholder="Amount"
-                           class="amount-input input" />
+                        <input id="number" type="number" autocomplete="off" disabled required min="1"
+                           placeholder="Amount" class="amount-input input" />
                      </div>
                      <div class="blockchain-block__controls">
                         <button id="transfer" class="transactions__transfer-btn btn" type="submit" disabled>Transfer

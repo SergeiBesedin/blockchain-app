@@ -173,6 +173,8 @@ body {
   padding: 16px 24px;
   background-color: #eff0f7;
   border-radius: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .pending-item:not(:last-child) {

@@ -61,9 +61,9 @@ class Main {
   private _addNewTransaction(e: SubmitEvent): void {
     e.preventDefault();
     const transaction = {
-      sender: this.senderInp.value.trim(),
-      recipient: this.recipientInp.value.trim(),
-      amount: Number(this.amountInp.value.trim()),
+      sender: this.senderInp.value,
+      recipient: this.recipientInp.value,
+      amount: Number(this.amountInp.value),
     };
     this._blockButtons(false, false);
     this.blockchain.createTransaction(transaction);
