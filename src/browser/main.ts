@@ -46,15 +46,15 @@ class Main {
     this.amountInp.value = '';
   }
 
-  async addGenesisBlock() {
+  async addGenesisBlock(): Promise<void> {
     this.statusEl.textContent = Status.Initialization;
-    this.pendingListEl.classList.add('hide');
+    this._showPendingList(true);
     await this.blockchain.createGenesisBlock();
     this.blocksEl.innerHTML = this.blockchain.chain
       .map((block, ind) => this._createBlockHtml(block, ind))
       .join('');
     this.statusEl.textContent = Status.AddTransaction;
-    this._toggleState(true, false);
+    this._blockButtons(true, false);
   }
 
   private _addNewTransaction(e: SubmitEvent): void {
@@ -64,15 +64,14 @@ class Main {
       recipient: this.recipientInp.value.trim(),
       amount: Number(this.amountInp.value.trim()),
     };
-    this._toggleState(false, false);
+    this._blockButtons(false, false);
     this.blockchain.createTransaction(transaction);
     this._createPendingTransaction(
       transaction.sender,
       transaction.recipient,
       transaction.amount
     );
-    this.notificationEl.classList.add('hide');
-    this.pendingListEl.classList.remove('hide');
+    this._showPendingList(false);
     this.statusEl.textContent = Status.ReadyToMine;
     this._clearFields();
   }
@@ -81,34 +80,38 @@ class Main {
     sender: string,
     recipient: string,
     amount: number
-  ) {
+  ): void {
     const pendingItem = document.createElement('li');
     pendingItem.classList.add('pending-item');
     pendingItem.textContent = `${sender} — ${recipient}: $${amount}`;
     this.pendingListEl.appendChild(pendingItem);
   }
 
-  private async _mineBlock() {
+  private async _mineBlock(): Promise<void> {
     this.statusEl.textContent = Status.MineInProgress;
-    this._toggleState(true, true);
+    this._blockButtons(true, true);
     await this.blockchain.minePendignTransaction();
     this.blocksEl.innerHTML = this.blockchain.chain
       .map((block, ind) => this._createBlockHtml(block, ind))
       .join('');
-    this._toggleState(true, false);
+    this._blockButtons(true, false);
     this.pendingListEl.innerHTML = '';
     this.statusEl.textContent = Status.AddTransaction;
-    this.pendingListEl.classList.add('hide');
-    this.notificationEl.classList.remove('hide');
+    this._showPendingList(true);
   }
 
-  private _toggleState(confirm: boolean, transferForm: boolean): void {
+  private _blockButtons(confirm: boolean, transferForm: boolean): void {
     this.transferBtn.disabled =
       this.amountInp.disabled =
       this.senderInp.disabled =
       this.recipientInp.disabled =
         transferForm;
     this.confirmBtn.disabled = confirm;
+  }
+
+  private _showPendingList(show: boolean): void {
+    this.pendingListEl.classList.toggle('hide', show);
+    this.notificationEl.classList.toggle('hide', !show);
   }
 
   private _createBlockHtml(block: Block, index: number): string {
