@@ -132,10 +132,12 @@ class Main {
        <div class="block__transactions">
          <div class="hash-title">Transactions</div>
          <ul class="block__transactions-list">
-         ${transactions.map(
-           (t) =>
-             `<li class="transaction-item">${t.sender} — ${t.recipient} — $${t.amount}</li>`
-         )}
+         ${transactions
+           .map(
+             (t) =>
+               `<li class="transaction-item">${t.sender} — ${t.recipient} — $${t.amount}</li>`
+           )
+           .join('')}
          </ul>
        </div>
     </div>

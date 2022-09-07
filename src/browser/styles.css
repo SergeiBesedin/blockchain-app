@@ -249,6 +249,10 @@ body {
   padding: 0;
 }
 
+.transaction-item:not(:last-child) {
+  margin-bottom: 4px;
+}
+
 /* Адаптив */
 @media (max-width: 1024px) {
   .blockchain__container {
