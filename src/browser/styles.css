@@ -50,15 +50,6 @@ body {
   margin: 0;
 }
 
-.blockchain__body {
-}
-
-.blockchain__transactions {
-}
-
-.transactions {
-}
-
 .transactions__fields {
   display: flex;
   flex-wrap: wrap;
@@ -143,12 +134,6 @@ body {
   transition-duration: 0.3s;
 }
 
-.blockchain__pending {
-}
-
-.pending {
-}
-
 .pending__notification {
   color: #a0a3bd;
   margin: 0;
@@ -219,6 +204,9 @@ body {
 }
 
 .block__timestamp {
+  font-size: 16px;
+  line-height: 24px;
+  color: #a0a3bd;
 }
 
 .block__hash {
@@ -226,31 +214,38 @@ body {
   margin-bottom: 24px;
 }
 
+.block__this-hash,
 .block__prev-hash {
   width: 50%;
+}
+
+.block__prev-hash {
   margin-right: 10px;
 }
 
 .hash-title {
+  font-size: 14px;
+  line-height: 20px;
   margin-bottom: 4px;
+  color: #6e7191;
 }
 
 .hash-value {
+  font-size: 16px;
+  line-height: 28px;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.block__this-hash {
-  width: 50%;
-}
-
-.block__transactions {
+  color: #4e4b66;
 }
 
 .block__transactions-list {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.transaction-item {
+  color: #4e4b66;
 }
 
 .transaction-item:not(:last-child) {
@@ -383,7 +378,12 @@ body {
 }
 
 .btn:disabled {
-  background: #a0a3bd;
+  background: #d9dbe9;
+  cursor: no-drop;
+}
+
+.btn:focus {
+  outline: 8px solid rgba(228, 218, 255, 1);
 }
 
 /* Состояния для инпутов */
