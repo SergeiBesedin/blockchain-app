@@ -8,6 +8,13 @@ const enum Status {
   MineInProgress = '⏳ Mining a new block ...',
 }
 
+const enum StatusColor {
+  Initialization = '#addaff',
+  AddTransaction = '#e4daff',
+  ReadyToMine = '#dffff6',
+  MineInProgress = '#fddbb3',
+}
+
 class Main {
   statusEl: HTMLElement;
   blocksEl: HTMLElement;
@@ -49,12 +56,14 @@ class Main {
 
   async addGenesisBlock(): Promise<void> {
     this.statusEl.textContent = Status.Initialization;
+    this.statusEl.style.backgroundColor = StatusColor.Initialization;
     this._showPendingList(true);
     await this.blockchain.createGenesisBlock();
     this.blocksEl.innerHTML = this.blockchain.chain
       .map((block, ind) => this._createBlockHtml(block, ind))
       .join('');
     this.statusEl.textContent = Status.AddTransaction;
+    this.statusEl.style.backgroundColor = StatusColor.AddTransaction;
     this._blockButtons(true, false);
   }
 
@@ -67,13 +76,14 @@ class Main {
     };
     this._blockButtons(false, false);
     this.blockchain.createTransaction(transaction);
-    this._createPendingTransaction(transaction);
+    this._createTransactionItem(transaction);
     this._showPendingList(false);
     this.statusEl.textContent = Status.ReadyToMine;
+    this.statusEl.style.backgroundColor = StatusColor.ReadyToMine;
     this._clearFields();
   }
 
-  private _createPendingTransaction(t: Transaction): void {
+  private _createTransactionItem(t: Transaction): void {
     const { sender, recipient, amount } = t;
     const pendingItem = document.createElement('li');
     pendingItem.classList.add('pending-item');
@@ -83,6 +93,7 @@ class Main {
 
   private async _mineBlock(): Promise<void> {
     this.statusEl.textContent = Status.MineInProgress;
+    this.statusEl.style.backgroundColor = StatusColor.MineInProgress;
     this._blockButtons(true, true);
     await this.blockchain.minePendignTransaction();
     this.blocksEl.innerHTML = this.blockchain.chain
@@ -91,6 +102,7 @@ class Main {
     this._blockButtons(true, false);
     this.pendingListEl.innerHTML = '';
     this.statusEl.textContent = Status.AddTransaction;
+    this.statusEl.style.backgroundColor = StatusColor.AddTransaction;
     this._showPendingList(true);
   }
 

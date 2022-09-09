@@ -16,7 +16,7 @@ export class Block implements IBlock {
     //увеличение числа нулей влияет на время вычисления хэша
     do {
       this.hash = await this.calculateHash(++this.nonce);
-    } while (this.hash.startsWith('00000') === false);
+    } while (this.hash.startsWith('0000000') === false);
   }
 
   private async calculateHash(nonce: number): Promise<string> {
