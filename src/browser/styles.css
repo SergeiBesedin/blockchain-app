@@ -21,30 +21,33 @@ body {
 
 .blockchain__container {
   width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 32px;
+  max-width: 1200px;
+  margin: 72px auto;
+  padding: 0 48px;
   box-sizing: border-box;
 }
 
 .blockchain__header {
-  margin-bottom: 40px;
+  margin-bottom: 54px;
 }
 
 .header__title {
-  font-size: 44px;
-  line-height: 60px;
+  font-size: 64px;
+  line-height: 80px;
   letter-spacing: 1px;
   font-weight: 400;
+  margin: 0;
+  margin-bottom: 16px;
 }
 
 .header__status {
-  padding: 24px;
+  padding: 24px 32px;
   border-radius: 16px;
   background-color: #e4daff;
   color: #4e4b66;
   font-size: 24px;
-  line-height: 36px;
+  line-height: 38px;
+  margin: 0;
 }
 
 .blockchain__body {
@@ -66,7 +69,7 @@ body {
   display: flex;
   align-items: center;
   margin-right: 24px;
-  width: 70%;
+  width: 75%;
 }
 
 .blockchain-block {
@@ -76,22 +79,22 @@ body {
 }
 
 .blockchain-block:not(:last-child) {
-  margin-bottom: 40px;
+  margin-bottom: 56px;
 }
 
 .blockchain-block__container {
   display: flex;
   flex-direction: column;
-  padding: 32px;
+  padding: 44px 52px;
 }
 
 .blockchain-block__title {
   font-size: 32px;
-  line-height: 36px;
+  line-height: 34px;
   font-weight: 700;
   letter-spacing: 1px;
   margin: 0;
-  margin-bottom: 36px;
+  margin-bottom: 44px;
 }
 
 .blockchain-block__controls {
@@ -115,12 +118,12 @@ body {
 
 .input {
   width: 100%;
-  padding: 16px 24px;
+  padding: 18px 24px;
   border: none;
   border-radius: 16px;
   background-color: #eff0f7;
   font-size: 16px;
-  line-height: 24px;
+  line-height: 28px;
   box-sizing: border-box;
 }
 
@@ -130,11 +133,12 @@ body {
   align-items: center;
   justify-content: center;
   border: none;
+  height: 64px;
   border-radius: 40px;
   background-color: #5f2eea;
   color: #ffffff;
-  font-size: 16px;
-  line-height: 22px;
+  font-size: 18px;
+  line-height: 34px;
   cursor: pointer;
   transition-duration: 0.3s;
 }
@@ -189,12 +193,12 @@ body {
 
 /* Стили для блоков */
 .block {
-  width: 48%;
+  width: calc(50% - 12px);
   background-color: #eff0f7;
   color: #6e7191;
   border-radius: 16px;
   box-sizing: border-box;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 }
 
 .block__container {
@@ -255,20 +259,59 @@ body {
 
 /* Адаптив */
 @media (max-width: 1024px) {
-  .blockchain__container {
-    padding: 0 24px;
+  .blockchain-block__container {
+    padding: 44px;
   }
 
-  .blockchain-block__container {
-    padding: 24px;
+  .header__title {
+    font-size: 48px;
+    line-height: 50px;
   }
 }
 
-@media (max-width: 780px) {
+@media (max-width: 786px) {
+  .blockchain__container {
+    padding: 0 32px;
+    margin: 56px auto;
+  }
+
+  .blockchain__header {
+    margin-bottom: 40px;
+  }
+
+  .header__title {
+    font-size: 32px;
+    line-height: 36px;
+  }
+
+  .header__status {
+    font-size: 20px;
+    line-height: 32px;
+    padding: 16px 24px;
+  }
+
+  .blockchain-block:not(:last-child) {
+    margin-bottom: 40px;
+  }
+
+  .blockchain-block__container {
+    padding: 32px;
+  }
+
+  .blockchain-block__title {
+    font-size: 24px;
+    line-height: 32px;
+    margin-bottom: 24px;
+  }
+
   .transactions__fields-wrapper {
     width: 100%;
     margin-right: 0;
     margin-bottom: 24px;
+  }
+
+  .block {
+    width: 100%;
   }
 }
 
@@ -279,7 +322,7 @@ body {
 
   .header__status {
     font-size: 16px;
-    line-height: 24px;
+    line-height: 28px;
     padding: 16px;
   }
 
@@ -288,7 +331,7 @@ body {
   }
 
   .blockchain-block__container {
-    padding: 16px;
+    padding: 32px 24px;
   }
 
   .blockchain-block__title {
@@ -308,13 +351,19 @@ body {
     font-size: 16px;
     line-height: 20px;
   }
-
-  .block {
-    width: 100%;
-  }
 }
 
 @media (max-width: 360px) {
+  .blockchain-block__container {
+    padding: 16px;
+  }
+
+  .pending__notification {
+    padding: 6px 24px;
+    font-size: 14px;
+    line-height: 24px;
+  }
+
   .arrow-right {
     background-size: 16px;
     padding: 0 8px;
