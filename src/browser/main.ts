@@ -55,15 +55,13 @@ class Main {
   }
 
   async addGenesisBlock(): Promise<void> {
-    this.statusEl.textContent = Status.Initialization;
-    this.statusEl.style.backgroundColor = StatusColor.Initialization;
+    this._changeStatus(Status.Initialization);
     this._showPendingList(true);
     await this.blockchain.createGenesisBlock();
     this.blocksEl.innerHTML = this.blockchain.chain
       .map((block, ind) => this._createBlockHtml(block, ind))
       .join('');
-    this.statusEl.textContent = Status.AddTransaction;
-    this.statusEl.style.backgroundColor = StatusColor.AddTransaction;
+    this._changeStatus(Status.AddTransaction);
     this._blockButtons(true, false);
   }
 
@@ -78,8 +76,7 @@ class Main {
     this.blockchain.createTransaction(transaction);
     this._createTransactionItem(transaction);
     this._showPendingList(false);
-    this.statusEl.textContent = Status.ReadyToMine;
-    this.statusEl.style.backgroundColor = StatusColor.ReadyToMine;
+    this._changeStatus(Status.ReadyToMine);
     this._clearFields();
   }
 
@@ -92,8 +89,7 @@ class Main {
   }
 
   private async _mineBlock(): Promise<void> {
-    this.statusEl.textContent = Status.MineInProgress;
-    this.statusEl.style.backgroundColor = StatusColor.MineInProgress;
+    this._changeStatus(Status.MineInProgress);
     this._blockButtons(true, true);
     await this.blockchain.minePendignTransaction();
     this.blocksEl.innerHTML = this.blockchain.chain
@@ -101,8 +97,7 @@ class Main {
       .join('');
     this._blockButtons(true, false);
     this.pendingListEl.innerHTML = '';
-    this.statusEl.textContent = Status.AddTransaction;
-    this.statusEl.style.backgroundColor = StatusColor.AddTransaction;
+    this._changeStatus(Status.AddTransaction);
     this._showPendingList(true);
   }
 
@@ -113,6 +108,11 @@ class Main {
       this.recipientInp.disabled =
         transferForm;
     this.confirmBtn.disabled = confirm;
+  }
+
+  private _changeStatus(status: Status) {
+    this.statusEl.textContent = status;
+    this.statusEl.style.backgroundColor = status;
   }
 
   private _showPendingList(show: boolean): void {
