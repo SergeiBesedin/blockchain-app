@@ -1,14 +1,14 @@
 import { Block, Blockchain } from '../lib/bc-transactions.js';
 import { Transaction } from '../typings/typings.js';
 
-const enum Status {
+enum Status {
   Initialization = '⏳ Initializing the blockchain, creating the genesis block ...',
   AddTransaction = '📥 Add one or more transactions',
   ReadyToMine = '✔ Ready to mine a new block',
   MineInProgress = '⏳ Mining a new block ...',
 }
 
-const enum StatusColor {
+enum StatusColor {
   Initialization = '#addaff',
   AddTransaction = '#e4daff',
   ReadyToMine = '#dffff6',
@@ -55,13 +55,13 @@ class Main {
   }
 
   async addGenesisBlock(): Promise<void> {
-    this._changeStatus(Status.Initialization);
+    this._changeStatus('Initialization');
     this._showPendingList(true);
     await this.blockchain.createGenesisBlock();
     this.blocksEl.innerHTML = this.blockchain.chain
       .map((block, ind) => this._createBlockHtml(block, ind))
       .join('');
-    this._changeStatus(Status.AddTransaction);
+    this._changeStatus('AddTransaction');
     this._blockButtons(true, false);
   }
 
@@ -76,7 +76,7 @@ class Main {
     this.blockchain.createTransaction(transaction);
     this._createTransactionItem(transaction);
     this._showPendingList(false);
-    this._changeStatus(Status.ReadyToMine);
+    this._changeStatus('ReadyToMine');
     this._clearFields();
   }
 
@@ -89,7 +89,7 @@ class Main {
   }
 
   private async _mineBlock(): Promise<void> {
-    this._changeStatus(Status.MineInProgress);
+    this._changeStatus('MineInProgress');
     this._blockButtons(true, true);
     await this.blockchain.minePendignTransaction();
     this.blocksEl.innerHTML = this.blockchain.chain
@@ -97,7 +97,7 @@ class Main {
       .join('');
     this._blockButtons(true, false);
     this.pendingListEl.innerHTML = '';
-    this._changeStatus(Status.AddTransaction);
+    this._changeStatus('AddTransaction');
     this._showPendingList(true);
   }
 
@@ -110,9 +110,9 @@ class Main {
     this.confirmBtn.disabled = confirm;
   }
 
-  private _changeStatus(status: Status) {
-    this.statusEl.textContent = status;
-    this.statusEl.style.backgroundColor = status;
+  private _changeStatus(status: string): void {
+    this.statusEl.textContent = Status[status];
+    this.statusEl.style.backgroundColor = StatusColor[status];
   }
 
   private _showPendingList(show: boolean): void {
