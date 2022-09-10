@@ -252,6 +252,75 @@ body {
   margin-bottom: 4px;
 }
 
+/* Состояния для кнопок */
+@media (hover: hover) and (pointer: fine) {
+  /* только для устройств с мышью */
+  .btn:hover {
+    background-color: #2a00a2;
+  }
+}
+
+.btn:active {
+  background: #160056;
+}
+
+.btn:disabled {
+  background: #d9dbe9;
+  cursor: no-drop;
+}
+
+.btn:focus {
+  outline: 8px solid rgba(228, 218, 255, 1);
+}
+
+/* Состояния для инпутов */
+.input:focus {
+  background-color: #ffffff;
+  outline: 2px solid #696eff;
+}
+
+.input:invalid:focus {
+  background-color: #fff3f8;
+  outline: 2px solid #ed2e7e;
+}
+
+/* loader */
+.loader-wrapper {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.loader {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 0.25em solid;
+  border-color: #d9dbe9 #d9dbe9 #fcfcfc;
+  vertical-align: middle;
+  font-size: 14px;
+  animation: spin 0.8s linear infinite;
+}
+
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
 /* Адаптив */
 @media (max-width: 1024px) {
   .blockchain-block__container {
@@ -346,6 +415,11 @@ body {
     font-size: 16px;
     line-height: 20px;
   }
+
+  .loader {
+    width: 32px;
+    height: 32px;
+  }
 }
 
 @media (max-width: 360px) {
@@ -364,35 +438,3 @@ body {
     padding: 0 8px;
   }
 }
-
-/* Состояния для кнопок */
-@media (hover: hover) and (pointer: fine) {
-  /* только для устройств с мышью */
-  .btn:hover {
-    background-color: #2a00a2;
-  }
-}
-
-.btn:active {
-  background: #160056;
-}
-
-.btn:disabled {
-  background: #d9dbe9;
-  cursor: no-drop;
-}
-
-.btn:focus {
-  outline: 8px solid rgba(228, 218, 255, 1);
-}
-
-/* Состояния для инпутов */
-.input:focus {
-  background-color: #ffffff;
-  outline: 2px solid #696eff;
-}
-
-/* .input:invalid {
-  background-color: #fff3f8;
-  border: 2px solid #ed2e7e;
-} */
